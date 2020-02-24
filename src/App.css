@@ -1,7 +1,14 @@
 .App {
-  text-align: center;
+  text-align: left;
 }
-
+html,
+body,
+#app {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+.rowC{display:flex; flex-direction:row;}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -18,8 +25,8 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
+
   font-size: calc(10px + 2vmin);
   color: white;
 }
