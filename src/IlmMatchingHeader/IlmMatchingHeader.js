@@ -12,7 +12,7 @@ class IlmMatchingHeader extends Component {
     componentDidMount() {
         fetch('https://api.myjson.com/bins/ly7d1')
             .then(result => result.json())
-            .then(rowData => this.setState({ rowData }))
+            .then(rowData => this.props.setState({ rowData }))
     }
     onButtonClick = e => {
         const selectedNodes = this.gridApi.getSelectedNodes()
