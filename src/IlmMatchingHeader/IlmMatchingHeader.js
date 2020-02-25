@@ -12,58 +12,59 @@ class IlmMatchingHeader extends Component {
     componentDidMount() {
         fetch('https://api.myjson.com/bins/ly7d1')
             .then(result => result.json())
-            .then(rowData => this.props.setState({ rowData }))
+            .then(rowData => this.setState({ data: { "rowData": rowData } }))
     }
-    onButtonClick = e => {
+    /*onButtonClick = e => {
         const selectedNodes = this.gridApi.getSelectedNodes()
         const selectedData = selectedNodes.map(node => node.data)
         console.log(selectedData);
         const selectedDataStringPresentation = selectedData.map(node => node.make + ' ' + node.model).join(', ')
         alert(`Selected nodes: ${selectedDataStringPresentation}`)
-    }
+    }*/
     constructor(props) {
         super(props);
-        this.state = {
-            columnDefs: [{
+    }
+    /*   this.state = {
+           columnDefs: [{
 
-                headerName: "Make",
-                field: "make",
-                checkboxSelection: true
+               headerName: "Make",
+               field: "make",
+               checkboxSelection: true
 
-            }, {
-                headerName: "Price", field: "price"
-            }, {
-                headerName: "Model", field: "model", rowGroup: true, rowGroupIndex: 0, hide: true
-            }
-            ],
-            autoGroupColumnDef: {
-                headerName: "Model",
-                field: "model",
-                cellRenderer: 'agGroupCellRenderer',
-                cellRendererParams: {
-                    checkbox: true
-                }
-            }
-            ,
-            rowData: [{
-                make: "Toyota", model: "Celica", price: 35000
-            }, {
-                make: "Ford", model: "Mondeo", price: 32000
-            }, {
-                make: "Porsche", model: "Boxter", price: 72000
-            }]
-        }
-    }
-    onRowSelected(event) {
-        if (event != null && event != undefined) {
-            window.alert("row " + " selected = " + event.node.selected);
-        }
-        //window.alert("row " + event.node.data.athlete + " selected = " + event.node.selected);
-    }
-    onSelectionChanged(event) {
-        var rowCount = event.api.getSelectedNodes().length;
-        window.alert("selection changed, " + rowCount + " rows selected");
-    }
+           }, {
+               headerName: "Price", field: "price"
+           }, {
+               headerName: "Model", field: "model", rowGroup: true, rowGroupIndex: 0, hide: true
+           }
+           ],
+           autoGroupColumnDef: {
+               headerName: "Model",
+               field: "model",
+               cellRenderer: 'agGroupCellRenderer',
+               cellRendererParams: {
+                   checkbox: true
+               }
+           }
+           ,
+           rowData: [{
+               make: "Toyota", model: "Celica", price: 35000
+           }, {
+               make: "Ford", model: "Mondeo", price: 32000
+           }, {
+               make: "Porsche", model: "Boxter", price: 72000
+           }]
+       }
+   }
+   onRowSelected(event) {
+       if (event != null && event != undefined) {
+           window.alert("row " + " selected = " + event.node.selected);
+       }
+       //window.alert("row " + event.node.data.athlete + " selected = " + event.node.selected);
+   }
+   onSelectionChanged(event) {
+       var rowCount = event.api.getSelectedNodes().length;
+       window.alert("selection changed, " + rowCount + " rows selected");
+   }*/
     render() {
 
         return (
@@ -74,17 +75,17 @@ class IlmMatchingHeader extends Component {
                     width: '600px'
                 }}
             >
-                <button onClick={this.onButtonClick}>Get selected rows</button>
+                <button >Get selected rows</button>
 
                 <AgGridReact
-                    onGridReady={params => this.gridApi = params.api}
+                    onGridReady={params => this.props.data.gridApi = params.api}
                     groupSelectsChildren={true}
-                    autoGroupColumnDef={this.state.autoGroupColumnDef}
+                    autoGroupColumnDef={this.props.data.autoGroupColumnDef}
                     rowSelection="multiple"
-                    columnDefs={this.state.columnDefs}
-                    rowData={this.state.rowData}
-                    onSelectionChanged={this.onSelectionChanged.bind(this)}
-                    onRowSelected={this.onRowSelected.bind(this)}>
+                    columnDefs={this.props.data.columnDefs}
+                    rowData={this.props.data.rowData}
+                    onSelectionChanged={this.props.data.onSelectionChanged.bind(this)}
+                    onRowSelected={this.props.data.onRowSelected.bind(this)}>
 
                 </AgGridReact>
             </div>
