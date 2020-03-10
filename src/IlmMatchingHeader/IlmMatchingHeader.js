@@ -85,6 +85,7 @@ class IlmMatchingHeader extends Component {
                     columnDefs={this.props.data.columnDefs}
                     rowData={this.props.data.rowData}
                     onSelectionChanged={this.props.data.onSelectionChanged.bind(this)}
+
                     onRowSelected={this.props.data.onRowSelected.bind(this)}>
 
                 </AgGridReact>
